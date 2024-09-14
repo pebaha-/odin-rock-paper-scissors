@@ -100,13 +100,14 @@ container.addEventListener('click', (event) => {
 
     setChoices(playerSelection, computerSelection);
     setScores(playerScore, computerScore);
-
-    if (playerScore >= 5) {
-        alert("You won five rounds! Resetting score now.");
-        resetGame();
-    }
-    else if (computerScore >= 5) {
-        alert("Sorry, the computer won five rounds! Resetting score now.");
-        resetGame();
-    }
+    setTimeout(() => {
+        if (playerScore >= 5) {
+            alert("You won five rounds! Resetting score now.");
+            resetGame();
+        }
+        else if (computerScore >= 5) {
+            alert("Sorry, the computer won five rounds! Resetting score now.");
+            resetGame();
+        }
+    }, 1000);
 });
