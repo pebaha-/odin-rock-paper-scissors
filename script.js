@@ -40,26 +40,73 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    alert("Welcome to Rock Paper Scissors. You will now play five rounds against the computer.")
-    let playerSelection = prompt("Choose either 'rock', 'paper', or 'scissors'");
-    let computerSelection = getComputerChoice();
-    let result = playRound(playerSelection, computerSelection);
-
-    switch (result) {
-        case "Win":
-            alert("You win! Computer chose " + computerSelection);
-            break;
-        case "Loss":
-            alert("You lost. Computer chose " + computerSelection);
-            break;
-        case "Tie":
-            alert("It's a tie! You both chose " + computerSelection);
-            break;
-        default:
-            alert("Huh? This shouldn't happen.");
-            break;
-    }
+function setChoices(playerSelection, computerSelection) {
+    let choicesDiv = document.querySelector("#choices");
+    choicesDiv.textContent = `Player chose: ${playerSelection}, Computer chose: ${computerSelection}`;
 }
 
-game();
+function resetChoices() {
+    let choicesDiv = document.querySelector("#choices");
+    choicesDiv.textContent = "";
+}
+
+function setScores(playerScore, computerScore) {
+    let resultsDiv = document.querySelector("#results");
+    resultsDiv.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+}
+
+function resetScores() {
+    playerScore = 0;
+    computerScore = 0;
+    setScores(playerScore, computerScore);
+}
+
+function resetGame() {
+    resetChoices();
+    resetScores();
+}
+
+let playerScore = 0;
+let computerScore = 0;
+
+setScores(playerScore, computerScore)
+
+const container = document.querySelector("#container");
+container.addEventListener('click', (event) => {
+    let target = event.target;
+    let playerSelection = "";
+
+    switch (target.id) {
+        case 'rockBtn':
+            playerSelection = 'rock';
+            break;
+        case 'paperBtn':
+            playerSelection = 'paper';
+            break;
+        case 'scissorsBtn':
+            playerSelection = 'scissors';
+            break;
+        default:
+            return;
+    }
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+    if (result == 'Win') {
+        playerScore++;
+    }
+    else if (result == 'Loss') {
+        computerScore++;
+    }
+
+    setChoices(playerSelection, computerSelection);
+    setScores(playerScore, computerScore);
+
+    if (playerScore >= 5) {
+        alert("You won five rounds! Resetting score now.");
+        resetGame();
+    }
+    else if (computerScore >= 5) {
+        alert("Sorry, the computer won five rounds! Resetting score now.");
+        resetGame();
+    }
+});
