@@ -66,6 +66,24 @@ function resetGame() {
     resetScores();
 }
 
+const playerDialog = document.querySelector("#playerWon");
+const playerClose = document.querySelector("#playerWon button");
+
+// "Close" button closes the dialog
+playerClose.addEventListener("click", () => {
+    resetGame();
+    playerDialog.close();
+});
+
+const computerDialog = document.querySelector("#computerWon");
+const computerClose = document.querySelector("#computerWon button");
+
+// "Close" button closes the dialog
+computerClose.addEventListener("click", () => {
+    resetGame();
+    computerDialog.close();
+});
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -102,11 +120,9 @@ container.addEventListener('click', (event) => {
     setScores(playerScore, computerScore);
 
     if (playerScore >= 5) {
-        alert("You won five rounds! Resetting score now.");
-        resetGame();
+        playerDialog.showModal();
     }
     else if (computerScore >= 5) {
-        alert("Sorry, the computer won five rounds! Resetting score now.");
-        resetGame();
+        computerDialog.showModal();
     }
 });
