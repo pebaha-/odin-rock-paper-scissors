@@ -42,25 +42,23 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     alert("Welcome to Rock Paper Scissors. You will now play five rounds against the computer.")
-    for (i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose either 'rock', 'paper', or 'scissors'");
-        let computerSelection = getComputerChoice();
-        let result = playRound(playerSelection, computerSelection);
+    let playerSelection = prompt("Choose either 'rock', 'paper', or 'scissors'");
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
 
-        switch (result) {
-            case "Win":
-                alert("You win! Computer chose " + computerSelection);
-                break;
-            case "Loss":
-                alert("You lost. Computer chose " + computerSelection);
-                break;
-            case "Tie":
-                alert("It's a tie! You both chose " + computerSelection);
-                break;
-            default:
-                alert("Huh? This shouldn't happen.");
-                break;
-        }
+    switch (result) {
+        case "Win":
+            alert("You win! Computer chose " + computerSelection);
+            break;
+        case "Loss":
+            alert("You lost. Computer chose " + computerSelection);
+            break;
+        case "Tie":
+            alert("It's a tie! You both chose " + computerSelection);
+            break;
+        default:
+            alert("Huh? This shouldn't happen.");
+            break;
     }
 }
 
